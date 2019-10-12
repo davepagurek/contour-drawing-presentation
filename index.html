@@ -17,6 +17,16 @@
       </section>
 
       <section class="aligntop">
+        <h2>Assumptions</h2>
+        <p>Implicit 3D shape is "organic", meaning:</p>
+        <ul>
+          <li>It contains no self-overlapping part</li>
+          <li>Curves representing the silhouette of the shape are closed</li>
+          <li>Junctions with no tangent continuity are decorative and are not part of the core shape</li>
+        </ul>
+      </section>
+
+      <section class="aligntop">
         <h2>Pipeline</h2>
         <div class="fill row center">
           <div class="column fill-double center">
@@ -42,7 +52,7 @@
       </section>
 
       <section class="aligntop">
-        <h2>Classifying curves</h2>
+        <h2>Curve types</h2>
         <div class="row fill">
           <div class="column fill aligntop">
             <ul>
@@ -62,8 +72,145 @@
         </div>
       </section>
 
+      <section class="aligntop">
+        <h2>Segmenting the drawing</h2>
+        <div class="row fill stretch">
+          <div class="column fill">
+            <p>Start with a graph where each vertex is an endpoint or junction</p>
+          </div>
+          <div class="column fill center">
+            TODO illustration
+          </div>
+        </div>
+      </section>
+
+      <section class="aligntop">
+        <h2>Segmenting the drawing</h2>
+        <div class="row fill stretch">
+          <div class="column fill">
+            <p>Split tangent-continuous X junctions in two</p>
+          </div>
+          <div class="column fill center">
+            TODO illustration
+          </div>
+        </div>
+      </section>
+
+      <section class="aligntop">
+        <h2>Segmenting the drawing</h2>
+        <div class="row fill stretch">
+          <div class="column fill">
+            <p>Find and separate decorative shapes: Connected components with non-tangent-continuous X junctions</p>
+          </div>
+          <div class="column fill center">
+            TODO illustration
+          </div>
+        </div>
+      </section>
+
+      <section class="aligntop">
+        <h2>Segmenting the drawing</h2>
+        <div class="row fill stretch">
+          <div class="column fill">
+            <p>Find curves whose half edges are in different face cycles</p>
+            <ul>
+              <li>If there is tangent continuity at one end, keep it attached at that end as a <strong>suggestive contour</strong></li>
+              <li>Otherwise, disconnect it as a <strong>decorative element</strong>
+            </ul>
+          </div>
+          <div class="column fill center">
+            TODO illustration
+          </div>
+        </div>
+      </section>
+
+      <section class="aligntop">
+        <h2>Segmenting the drawing</h2>
+        <div class="row fill stretch">
+          <div class="column fill">
+            <p>Process remaining connected components as separate parts</p>
+          </div>
+          <div class="column fill center">
+            TODO illustration
+          </div>
+        </div>
+      </section>
+
       <section class="center">
         <h1>2. Find salient junctions</h1>
+      </section>
+
+      <section class="aligntop">
+        <h2>Find skeleton</h2>
+        <div class="row fill stretch">
+          <div class="column fill center">
+            <ul>
+              <li>Start by finding a set of maximal circles that are tangent to the contour in two places (Medial Axis Transform)</li>
+              <li>Remove circles that would be covered if all radii were scaled up</li>
+              <li>Connect circle centers to form a skeleton</li>
+              <li>Each circle on the skeleton is a candidate, where its two tangent locations would get connected</li>
+            </ul>
+          </div>
+          <div class="column fill center">
+            TODO add illustration
+          </div>
+        </div>
+      </section>
+
+      <section class="aligntop">
+        <h2>Find salient junctions</h2>
+        <div class="row fill stretch">
+          <div class="column fill center">
+            <ul>
+              <li><em>SSI</em><sub><em>A</em></sub> := sum of the length <em>l</em><sub>k</sub> from <em>A</em> to an edge in direction <em>k</em> over a set of many <em>k</em></li>
+              <li><span style="color: #4171d7;"><em>d</em><sub><em>k,A,B</em></span> := <span class="frac">
+                  <span>|<em>l</em><sub>k</sub><sup><em>A</em></sup> - <em>l</em><sub>k</sub><sup><em>B</em></sup>|</span>
+                  <span>||<em>B</em> - <em>A</em>||</span>
+                </span>
+              </li>
+              <li><span style="color: #d74141;"><em>w</em><sub><em>k,A,B</em></span> := Gaussian of <span style="color: #4171d7;"><em>d</em><sub><em>k,A,B</em></span></span> - &mu;</li>
+              <li>&Delta;(<em>SSI</em>)<sub><em>A</em>,<em>B</em></sub>
+                <div>
+                  :=
+                  <span class="frac">
+                    <span>1</span>
+                  <span>&sum;<sub><em>k</em></sub> <span style="color: #d74141;"><em>w</em><sub><em>k,A,B</em></sub></span></span>
+                  </span>
+                  <span class="sum">
+                    <span><em>m</em></span>
+                    <span class="sigma">&sum;</span>
+                    <span><em>k</em> = 1</span>
+                  </span>
+                  <span style="color: #d74141;"><em>w</em><sub><em>k,A,B</em></sub></span>
+                  <span style="color: #4171d7;"><em>d</em><sub><em>k,A,B</em></sub></span>
+                </div>
+                <div>
+                  &equiv; scale-invariant change in distance to edges
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="column fill center">
+            TODO illustration
+          </div>
+        </div>
+      </section>
+
+      <section class="aligntop">
+        <h2>Find salient junctions</h2>
+        <div class="row fill stretch">
+          <div class="column fill center">
+            <ul>
+              <li><em>d</em><sub><em>SSI</em></sub> := sum of &Delta;(<em>SSI</em>) along points of a polyline</li>
+              <li>Find the regions of the skeleton where <em>d</em><sub><em>SSI</em></sub> &gt; 0.45</li>
+              <li>Each region extends from the skeleton to the curve where the circles were tangent</li>
+              <li>Each region is a <strong>salient junction</strong></li>
+            </ul>
+          </div>
+          <div class="column fill center">
+            TODO
+          </div>
+        </div>
       </section>
 
       <section class="center">

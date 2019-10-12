@@ -1,0 +1,155 @@
+<html>
+  <head>
+    <title>
+      Structuring and Layering Contour Drawings of Organic Shapes
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="slides" class="loading">
+      <section class="center">
+        <h1>Structuring and Layering Contour Drawings of Organic Shapes</h1>
+        <h4 class="center">Even Entem (Université de Toulouse), Amal Dev Parakkat (Indian Institute of Technology), Marie-Paule Cani (Ecole Polytechnique), Loïc Barthe (Université de Toulouse)</h4>
+        <div class="row fill center">
+          <img width="70%" src="img/intro.png" />
+        </div>
+      </section>
+
+      <section class="aligntop">
+        <h2>Pipeline</h2>
+        <div class="fill row center">
+          <div class="column fill-double center">
+            <p class="center">1. Separate initial components</p>
+          </div>
+          <div class="column fill center">
+            <p class="center"><small>Each part &rarr;</small></p>
+          </div>
+          <div class="column fill-double center">
+            <p class="center">2. Find salient junctions</p>
+          </div>
+          <div class="column fill-double center">
+            <p class="center">3. Split on highest priority junction</p>
+          </div>
+          <div class="column fill-double center">
+            <p class="center">4. Go to step 2 for each side of the split</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>1. Separate initial components</h1>
+      </section>
+
+      <section class="aligntop">
+        <h2>Classifying curves</h2>
+        <div class="row fill">
+          <div class="column fill aligntop">
+            <ul>
+              <li><strong>Contour:</strong> corresponds to the silhouette of the 3D shape</li>
+              <li><strong>Suggestive contour:</strong> connects to a contour with tangent continuity, forming a T junction, depicting a partial contour of a part</li>
+              <li><strong>Decorative element:</strong> everything else
+                <ul>
+                  <li>Inner isolated subgraphs (ignored in this paper)</li>
+                  <li>Trees of curves connected to the contour, either inside or outside the contour</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="column fill center">
+            TODO add illustration
+          </div>
+        </div>
+      </section>
+
+      <section class="center">
+        <h1>2. Find salient junctions</h1>
+      </section>
+
+      <section class="center">
+        <h1>3. Split on highest priority junction</h1>
+      </section>
+
+      <section class="center">
+        <h1>Analysis</h1>
+      </section>
+      
+      <section>
+        <h2>Alignment</h2>
+        <div class="fill center">
+          <img width="600" src="img/cost_function_diagram-large.jpg" />
+        </div>
+      </section>
+
+      <section>
+        <h2>Distance</h2>
+        <div class="fill center">
+          <img width="600" src="img/vectorfield.png" />
+        </div>
+      </section>
+
+      <section>
+        <h2>What it's like to use</h2>
+        <div class="fill center">
+          <img width="500" src="img/curves.gif" />
+        </div>
+      </section>
+
+      <section>
+        <h2>Editing environment</h2>
+        <p>Split-screen with grammar and curves</p>
+        <div class="fill center">
+          <img width="700" src="img/editor.png" />
+        </div>
+      </section>
+
+      <section>
+        <h2>What can you make with it?</h2>
+        <div class="fill center">
+          <img width="800" src="img/tree-large.jpg" />
+        </div>
+      </section>
+
+      <section>
+        <h2>What can you make with it?</h2>
+        <div class="fill center">
+          <img width="800" src="img/cathedral-large.jpg" />
+        </div>
+      </section>
+
+      <section>
+        <h2>What's next for this project?</h2>
+        <ul>
+          <li>This is mostly proof-of-concept right now, could be added to a real modelling program</li>
+          <li data-order="1">Could add better support for volumes and areas
+            <ul>
+              <li>Give guides a thickness where growth is uniformly encouraged</li>
+              <li>Could also add target density within/around the guide</li>
+            </ul>
+          </li>
+          <li data-order="2">This still requires you to write a grammar, which is not easy
+            <ul>
+              <li>A GUI tool where grammar rules are components that can be combined would be useful</li>
+              <li>Would also be good to visualize the distribution of results every time any randomization/choice is added to a rule</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="center">
+        <h2>Questions?</h2>
+        <div class="row">
+          <div class="column">
+            <img src="img/cathedral1.png" width="400" />
+          </div>
+          <div class="column">
+            <img src="img/cathedral2.png" width="400" />
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script type="text/javascript" src="slides.js"></script>
+    <script type="text/javascript" src="slides/slide.js"></script>
+  </body>
+</html>

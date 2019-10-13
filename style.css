@@ -30,6 +30,11 @@ p, li {
 .hidden {
   opacity: 0;
 }
+svg .hidden {
+  opacity: 1;
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}
 svg circle, svg path {
   transition: all linear 0.2s;
 }

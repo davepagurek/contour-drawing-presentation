@@ -10,13 +10,13 @@
     <div id="slides" class="loading">
       <section class="center">
         <h1>Structuring and Layering Contour Drawings of Organic Shapes</h1>
-        <h4 class="center">Even Entem (Université de Toulouse), Amal Dev Parakkat (Indian Institute of Technology), Marie-Paule Cani (Ecole Polytechnique), Loïc Barthe (Université de Toulouse)</h4>
+        <h4 class="center">Even Entem (Universit&eacute; de Toulouse), Amal Dev Parakkat (Indian Institute of Technology), Marie-Paule Cani (Ecole Polytechnique), Lo&iuml;c Barthe (Universit&eacute; de Toulouse)</h4>
         <div class="row fill center">
           <img width="70%" src="img/intro.png" />
         </div>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Assumptions</h2>
         <p>Implicit 3D shape is "organic", meaning:</p>
         <ul>
@@ -26,22 +26,26 @@
         </ul>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Pipeline</h2>
         <div class="fill row center">
           <div class="column fill-double center">
+            <img src="img/initial.png" />
             <p class="center">1. Separate initial components</p>
           </div>
           <div class="column fill center">
             <p class="center"><small>Each part &rarr;</small></p>
           </div>
           <div class="column fill-double center">
+            <img src="img/junctions.png" />
             <p class="center">2. Find salient junctions</p>
           </div>
           <div class="column fill-double center">
+            <img src="img/split.png" />
             <p class="center">3. Split on highest priority junction</p>
           </div>
           <div class="column fill-double center">
+            <img src="img/recurse.png" />
             <p class="center">4. Go to step 2 for each side of the split</p>
           </div>
         </div>
@@ -51,14 +55,14 @@
         <h1>1. Separate initial components</h1>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Curve types</h2>
         <div class="row fill">
           <div class="column fill aligntop">
             <ul>
-              <li><strong>Contour:</strong> corresponds to the silhouette of the 3D shape</li>
-              <li><strong>Suggestive contour:</strong> connects to a contour with tangent continuity, forming a T junction, depicting a partial contour of a part</li>
-              <li><strong>Decorative element:</strong> everything else
+              <li data-order="1"><strong>Contour:</strong> corresponds to the silhouette of the 3D shape</li>
+              <li data-order="2"><strong>Suggestive contour:</strong> connects to a contour with tangent continuity, forming a T junction, depicting a partial contour of a part</li>
+              <li data-order="3"><strong>Decorative element:</strong> everything else
                 <ul>
                   <li>Inner isolated subgraphs (ignored in this paper)</li>
                   <li>Trees of curves connected to the contour, either inside or outside the contour</li>
@@ -67,50 +71,105 @@
             </ul>
           </div>
           <div class="column fill center">
-            TODO add illustration
+            <svg width="564" height="522" viewBox="0 0 564 522" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 1">
+<rect width="564" height="522" fill="white"/>
+<path data-highlight="1" id="Vector 1" d="M344.078 136.861C353.897 114.762 371.164 67.1809 434.84 91.9753C498.515 116.77 499.594 186.302 482.866 209.48C466.138 232.657 356.595 255.834 353.897 279.551C351.198 303.267 474.772 270.927 482.866 338.303C490.96 405.679 472.613 422.389 434.84 424.006C397.066 425.623 342.025 343.154 319.9 348.544C297.776 353.934 330.693 418.077 299.395 447.722C268.097 477.368 192.01 471.978 171.504 424.006C155.1 385.628 167.082 368.456 192.984 340.607" stroke="black" stroke-width="3"/>
+<path data-highlight="2" id="suggestive1" d="M193 341L244 294" stroke="black" stroke-width="3"/>
+<path data-highlight="1" id="Vector 2" d="M193 342C148.714 332.844 43.9415 331.767 80.666 219.74C110.046 130.119 161.031 156.873 175.073 165.49" stroke="black" stroke-width="3"/>
+<path data-highlight="2" id="suggestive2" d="M174 165C194.01 175.151 222.133 195.986 227 204" stroke="black" stroke-width="3"/>
+<path data-highlight="1" id="Vector 3" d="M175.969 166C144.762 87.6465 185.116 45.4978 234.616 37.9326C284.117 30.3674 347.606 69.274 343.84 138.441" stroke="black" stroke-width="3"/>
+<path data-highlight="2" id="suggestive3" d="M344 138C336.948 153.024 331.728 173.593 330 182" stroke="black" stroke-width="3"/>
+<path data-highlight="1" id="Vector 7" d="M251.238 268.377C238.408 249.58 249.1 219.505 283.848 209.838C297.035 206.795 325.547 205.327 334.101 223.801C344.793 246.895 323.409 275.358 310.578 282.34C297.748 289.322 264.068 287.173 251.238 268.377Z" stroke="black" stroke-width="3"/>
+<path data-highlight="1" id="Vector 8" d="M147.433 335C114.839 360.549 94.8969 436.944 89 471.948C113.838 472.489 169.412 469.025 193 450.837" stroke="black" stroke-width="3"/>
+<line data-highlight="3" id="dec4" x1="100" y1="381.5" x2="117" y2="381.5" stroke="black" stroke-width="3"/>
+<line data-highlight="3" id="dec2" x1="78.7258" y1="454.582" x2="93.8226" y2="445.956" stroke="black" stroke-width="3"/>
+<line data-highlight="3" id="dec3" x1="89.6162" y1="408.083" x2="103.635" y2="412.396" stroke="black" stroke-width="3"/>
+<line data-highlight="3" id="dec" x1="156.414" y1="465.246" x2="160.727" y2="483.578" stroke="black" stroke-width="3"/>
+<path data-highlight="1" id="Vector 9" d="M315 404C346.466 454.544 387.378 479.06 403.901 485C413.958 475.82 435.259 450.764 440 423.98" stroke="black" stroke-width="3"/>
+<line data-highlight="3" id="dec5" x1="328.203" y1="436.098" x2="336.829" y2="433.941" stroke="black" stroke-width="3"/>
+<line data-highlight="3" id="dec6" x1="364.875" y1="479.167" x2="369.188" y2="465.149" stroke="black" stroke-width="3"/>
+<line data-highlight="3" id="dec7" x1="429.293" y1="450.138" x2="443.311" y2="454.451" stroke="black" stroke-width="3"/>
+</g>
+</svg>
           </div>
         </div>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Segmenting the drawing</h2>
-        <div class="row fill stretch">
+        <div class="row fill">
           <div class="column fill">
             <p>Start with a graph where each vertex is an endpoint or junction</p>
           </div>
           <div class="column fill center">
-            TODO illustration
+<svg width="412" height="412" viewBox="0 0 412 412" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="412" height="412" fill="white"/>
+<path d="M28 298C82.7692 240.389 350.468 169.354 384 178.862" stroke="black" stroke-width="3"/>
+<path d="M68 114C139.348 117.915 206.764 162.102 218 213" stroke="black" stroke-width="3"/>
+<circle cx="66.5" cy="113.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="217.5" cy="213.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="28.5" cy="298.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="382.5" cy="177.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+</svg>
           </div>
         </div>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Segmenting the drawing</h2>
-        <div class="row fill stretch">
+        <div class="row fill">
           <div class="column fill">
             <p>Split tangent-continuous X junctions in two</p>
           </div>
           <div class="column fill center">
-            TODO illustration
+<svg width="415" height="508" viewBox="0 0 415 508" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="415" height="508" fill="white"/>
+<path d="M68.5 78.5C160 167.5 293 225.5 340 218" stroke="black" stroke-width="3"/>
+<path d="M287 27C283.8 129.4 151.667 199 86 221" stroke="black" stroke-width="3"/>
+<circle cx="75.5" cy="78.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="286.5" cy="27.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="193.5" cy="168.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="85.5" cy="221.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="339.5" cy="219.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<path d="M68.5 333.5C160 422.5 293 480.5 340 473" stroke="#EB5757" stroke-width="3"/>
+<path d="M287 282C283.8 384.4 151.667 454 86 476" stroke="#2F80ED" stroke-width="3"/>
+<circle cx="75.5" cy="333.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="286.5" cy="282.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="85.5" cy="476.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="339.5" cy="474.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<path d="M191.232 307.768C192.209 308.744 193.791 308.744 194.768 307.768L210.678 291.858C211.654 290.882 211.654 289.299 210.678 288.322C209.701 287.346 208.118 287.346 207.142 288.322L193 302.464L178.858 288.322C177.882 287.346 176.299 287.346 175.322 288.322C174.346 289.299 174.346 290.882 175.322 291.858L191.232 307.768ZM190.5 233L190.5 306L195.5 306L195.5 233L190.5 233Z" fill="black"/>
+</svg>
           </div>
         </div>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Segmenting the drawing</h2>
-        <div class="row fill stretch">
+        <div class="row fill">
           <div class="column fill">
             <p>Find and separate decorative shapes: Connected components with non-tangent-continuous X junctions</p>
           </div>
           <div class="column fill center">
-            TODO illustration
+<svg width="412" height="412" viewBox="0 0 412 412" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="412" height="412" fill="white"/>
+<line x1="55.8224" y1="112.746" x2="206.822" y2="211.746" stroke="black" stroke-width="3"/>
+<line x1="78.9936" y1="325.888" x2="204.994" y2="211.888" stroke="black" stroke-width="3"/>
+<line x1="362.301" y1="175.469" x2="206.301" y2="207.469" stroke="black" stroke-width="3"/>
+<line x1="361.636" y1="253.455" x2="205.636" y2="214.455" stroke="black" stroke-width="3"/>
+<circle cx="54.5" cy="113.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="205.5" cy="213.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="80.5" cy="327.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="361.5" cy="173.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+<circle cx="361.5" cy="253.5" r="9" fill="white" stroke="black" stroke-width="3"/>
+</svg>
           </div>
         </div>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Segmenting the drawing</h2>
-        <div class="row fill stretch">
+        <div class="row fill">
           <div class="column fill">
             <p>Find curves whose half edges are in different face cycles</p>
             <ul>
@@ -119,19 +178,79 @@
             </ul>
           </div>
           <div class="column fill center">
-            TODO illustration
+<svg width="400" height="521" viewBox="0 0 441 621" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="halfedge">
+<rect width="441" height="621" fill="white"/>
+<g id="Group 3">
+<path id="suggestive1" d="M162 510L194 482" stroke="#B52CE6" stroke-width="3"/>
+<path id="suggestive2" d="M151 409C163.082 414.986 180.061 427.274 183 432" stroke="#B52CE6" stroke-width="3"/>
+<path id="suggestive3" d="M252 390C248.474 398.878 245.864 411.033 245 416" stroke="#B52CE6" stroke-width="3"/>
+<path id="suggestive1_2" d="M165 514L197 486" stroke="#B52CE6" stroke-width="3"/>
+<path id="suggestive2_2" d="M153 404C165.082 409.986 182.061 422.274 185 427" stroke="#B52CE6" stroke-width="3"/>
+<path id="suggestive3_2" d="M256 391C252.474 399.878 249.864 412.033 249 417" stroke="#B52CE6" stroke-width="3"/>
+</g>
+<g id="Group 1">
+<path id="Vector 14" d="M255.206 81.8085C261.1 68.4946 271.465 39.8292 309.688 54.7669C347.911 69.7045 348.559 111.595 338.517 125.558C328.476 139.522 262.719 153.485 261.1 167.773C259.48 182.061 333.658 162.577 338.517 203.169C343.376 243.76 332.363 253.827 309.688 254.801C287.013 255.775 253.973 206.091 240.692 209.339C227.412 212.586 247.171 251.229 228.383 269.089C209.596 286.949 163.923 283.702 151.614 254.801C141.766 231.68 148.959 221.335 164.508 204.557" stroke="#FF0000" stroke-width="6"/>
+<path id="Vector 15" d="M162.411 205.629C136.057 200.135 73.7074 199.488 95.562 132.262C113.046 78.4803 143.387 94.5353 151.743 99.7065" stroke="#FF0000" stroke-width="6"/>
+<path id="Vector 16" d="M153.673 98.5121C134.998 52.0393 159.146 27.0402 188.768 22.5531C218.39 18.0661 256.384 41.1422 254.13 82.1665" stroke="#FF0000" stroke-width="6"/>
+</g>
+<g id="Group 2">
+<path id="Vector 14_2" d="M255.216 84.946C260.843 72.1851 270.741 44.7107 307.237 59.0278C343.734 73.3448 344.353 111.617 334.765 125C325.177 138.383 261.533 150 259.5 168C257.75 183.5 330.381 164.5 334.765 201.264C339.404 240.169 328.638 247.339 307.237 250.751C290 253.5 254.912 202.595 239 206.5C226.319 209.612 244.5 248 229.604 264.446C212.958 282.824 168.055 278.452 156.301 250.751C146.899 228.591 153.767 218.675 168.613 202.595" stroke="#7785FF" stroke-width="6"/>
+<path id="Vector 15_2" d="M166 204C140.905 198.712 81.5335 198.09 102.344 133.39C118.993 81.6302 147.884 97.0817 155.841 102.059" stroke="#7785FF" stroke-width="6"/>
+<path id="Vector 16_2" d="M158.25 101C140.468 56.6604 163.463 32.8088 191.67 28.5277C219.876 24.2467 256.055 46.2636 253.909 85.4047" stroke="#7785FF" stroke-width="6"/>
+</g>
+<line id="Line 7" x1="306.239" y1="525.491" x2="327.239" y2="584.491" stroke="#33ECC0" stroke-width="9"/>
+<path id="Vector 8" d="M254.961 83.6265C260.738 70.5757 270.899 42.4769 308.366 57.1193C345.834 71.7617 346.469 112.824 336.625 126.512C326.782 140.199 262.326 153.887 260.738 167.892C259.15 181.898 331.863 162.799 336.625 202.588C341.388 242.378 330.593 252.245 308.366 253.2C286.14 254.155 253.752 205.453 240.734 208.636C227.716 211.819 247.084 249.699 228.668 267.206C210.252 284.713 165.482 281.53 153.416 253.2C143.763 230.536 150.814 220.395 166.055 203.949" stroke="black" stroke-width="3"/>
+<path id="suggestive1_3" d="M164 205L196 177" stroke="black" stroke-width="3"/>
+<path id="Vector 9" d="M164 205C138.167 199.614 77.0492 198.98 98.4719 133.083C115.61 80.3641 145.351 96.1018 153.542 101.171" stroke="black" stroke-width="3"/>
+<path id="suggestive2_3" d="M153 100C165.082 105.986 182.061 118.274 185 123" stroke="black" stroke-width="3"/>
+<path id="Vector 10" d="M155.434 100C137.129 54.4456 160.8 29.9406 189.836 25.5422C218.873 21.1439 256.115 43.7639 253.906 83.9774" stroke="black" stroke-width="3"/>
+<path id="suggestive3_3" d="M254 84C250.474 92.878 247.864 105.033 247 110" stroke="black" stroke-width="3"/>
+<path id="Vector 11" d="M254.961 390.627C260.738 377.576 270.899 349.477 308.366 364.119C345.834 378.762 346.469 419.824 336.625 433.512C326.782 447.199 262.326 460.887 260.738 474.892C259.15 488.898 331.863 469.799 336.625 509.588C341.388 549.378 330.593 559.245 308.366 560.2C286.14 561.155 253.752 512.453 240.734 515.636C227.716 518.819 247.084 556.699 228.668 574.206C210.252 591.713 165.482 588.53 153.416 560.2C143.763 537.536 150.814 527.395 166.055 510.949" stroke="black" stroke-width="3"/>
+<path id="suggestive1_4" d="M164 512L196 484" stroke="black" stroke-width="3"/>
+<path id="Vector 12" d="M164 512C138.167 506.614 77.0492 505.98 98.4719 440.083C115.61 387.364 145.351 403.102 153.542 408.171" stroke="black" stroke-width="3"/>
+<path id="suggestive2_4" d="M153 407C165.082 412.986 182.061 425.274 185 430" stroke="black" stroke-width="3"/>
+<path id="Vector 13" d="M155.434 407C137.129 361.446 160.8 336.941 189.836 332.542C218.873 328.144 256.115 350.764 253.906 390.977" stroke="black" stroke-width="3"/>
+<path id="suggestive3_4" d="M254 390C250.474 398.878 247.864 411.033 247 416" stroke="black" stroke-width="3"/>
+<line id="Line 5" x1="306.413" y1="220.497" x2="327.413" y2="279.497" stroke="black" stroke-width="3"/>
+<line id="Line 6" x1="306.413" y1="525.497" x2="327.413" y2="584.497" stroke="black" stroke-width="3"/>
+<line id="Line 8" x1="164.349" y1="512.358" x2="121.349" y2="554.358" stroke="black" stroke-dasharray="4 4"/>
+<line id="Line 9" x1="152.736" y1="407.425" x2="107.736" y2="379.425" stroke="black" stroke-dasharray="4 4"/>
+<line id="Line 10" x1="253.517" y1="389.87" x2="267.517" y2="337.87" stroke="black" stroke-dasharray="4 4"/>
+</g>
+</svg>
           </div>
         </div>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Segmenting the drawing</h2>
-        <div class="row fill stretch">
+        <div class="row fill">
           <div class="column fill">
             <p>Process remaining connected components as separate parts</p>
           </div>
           <div class="column fill center">
-            TODO illustration
+<svg width="429" height="529" viewBox="0 0 429 529" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="components">
+<rect width="429" height="529" fill="white"/>
+<path id="Vector 1" d="M252.451 68.9877C258.527 55.3569 269.215 26.0092 308.623 41.3024C348.032 56.5956 348.7 99.4829 338.347 113.779C327.994 128.075 260.197 142.37 258.527 156.999C256.858 171.627 333.337 151.679 338.347 193.237C343.357 234.794 332.002 245.101 308.623 246.098C285.245 247.095 251.18 196.229 237.487 199.554C223.794 202.878 244.167 242.441 224.796 260.726C205.426 279.012 158.335 275.687 145.644 246.098C135.492 222.427 142.908 211.835 158.938 194.658" stroke="black" stroke-width="3"/>
+<path id="suggestive1" d="M159 195L191 166" stroke="black" stroke-width="3"/>
+<path id="Vector 2" d="M159 196C131.691 190.32 67.0806 189.652 89.7274 120.16C107.845 64.5658 139.286 81.1618 147.945 86.5074" stroke="black" stroke-width="3"/>
+<path id="suggestive2" d="M147 86C159.459 92.2466 176.969 105.068 180 110" stroke="black" stroke-width="3"/>
+<path id="Vector 3" d="M148.741 87C129.563 38.4087 154.362 12.2699 184.781 7.57835C215.2 2.88677 254.216 27.0149 251.902 69.9093" stroke="black" stroke-width="3"/>
+<path id="suggestive3" d="M252 69C247.97 78.561 244.988 91.6504 244 97" stroke="black" stroke-width="3"/>
+<path id="Vector 7" d="M195.223 150.155C187.328 138.588 193.907 120.08 215.291 114.131C223.406 112.258 240.952 111.355 246.216 122.724C252.795 136.935 239.636 154.451 231.741 158.748C223.845 163.044 203.119 161.722 195.223 150.155Z" stroke="black" stroke-width="3"/>
+<path id="Vector 8" d="M180.471 380.826C184.422 371.951 191.371 352.844 216.996 362.801C242.622 372.758 243.056 400.68 236.324 409.988C229.592 419.295 185.508 428.603 184.422 438.127C183.336 447.651 233.067 434.664 236.324 461.72C239.582 488.777 232.198 495.487 216.996 496.136C201.795 496.785 179.644 463.668 170.74 465.833C161.837 467.997 175.084 493.755 162.488 505.66C149.893 517.565 119.272 515.4 111.02 496.136C104.418 480.725 109.24 473.829 119.664 462.645" stroke="black" stroke-width="3"/>
+<path id="suggestive1_2" d="M119 463L140 444" stroke="black" stroke-width="3"/>
+<path id="Vector 9" d="M119 463C101.286 459.328 59.3766 458.896 74.0664 413.965C85.8183 378.021 106.212 388.751 111.829 392.207" stroke="black" stroke-width="3"/>
+<path id="suggestive2_2" d="M111 392C119.306 395.904 130.98 403.918 133 407" stroke="black" stroke-width="3"/>
+<path id="Vector 10" d="M112.412 392C99.8596 360.416 116.091 343.425 136.002 340.376C155.913 337.326 181.451 353.01 179.936 380.891" stroke="black" stroke-width="3"/>
+<path id="suggestive3_2" d="M180 381C177.481 387.146 175.617 395.561 175 399" stroke="black" stroke-width="3"/>
+<path id="Vector 11" d="M310.072 436.77C304.996 429.058 309.226 416.72 322.973 412.754C328.19 411.506 339.469 410.903 342.853 418.483C347.083 427.957 338.623 439.634 333.547 442.498C328.472 445.363 315.148 444.481 310.072 436.77Z" stroke="black" stroke-width="3"/>
+<path id="Arrow 2" d="M189.034 341.545C189.887 342.63 191.459 342.819 192.545 341.966L210.237 328.065C211.322 327.212 211.511 325.64 210.658 324.554C209.805 323.469 208.233 323.28 207.148 324.133L191.421 336.49L179.065 320.763C178.212 319.678 176.64 319.489 175.554 320.342C174.469 321.195 174.28 322.767 175.133 323.852L189.034 341.545ZM194.518 289.702L188.518 339.702L193.482 340.298L199.482 290.298L194.518 289.702Z" fill="black"/>
+<path id="Arrow 3" d="M282.133 342.345C283.428 342.824 284.866 342.162 285.345 340.867L293.15 319.764C293.629 318.469 292.967 317.031 291.672 316.552C290.377 316.073 288.939 316.735 288.46 318.03L281.522 336.788L262.764 329.85C261.469 329.371 260.031 330.033 259.552 331.328C259.073 332.623 259.735 334.061 261.03 334.54L282.133 342.345ZM257.729 291.045L280.729 341.045L285.271 338.955L262.271 288.955L257.729 291.045Z" fill="black"/>
+</g>
+</svg>
           </div>
         </div>
       </section>
@@ -140,9 +259,9 @@
         <h1>2. Find salient junctions</h1>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Find skeleton</h2>
-        <div class="row fill stretch">
+        <div class="row fill">
           <div class="column fill center">
             <ul>
               <li>Start by finding a set of maximal circles that are tangent to the contour in two places (Medial Axis Transform)</li>
@@ -152,63 +271,117 @@
             </ul>
           </div>
           <div class="column fill center">
-            TODO add illustration
+<svg width="429" height="451" viewBox="0 0 429 451" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="medialaxis">
+<rect width="429" height="451" fill="white"/>
+<path id="outline" d="M274.542 233.831C239.944 233.831 215.098 249.986 177.351 281.771M177.351 281.771C139.603 313.556 111.531 349.809 73.06 353.681C20.1456 359.008 16.7536 296.419 31.6782 249.811C46.6028 203.202 125.975 98 212.808 98C299.642 98 400.723 160.589 404.793 249.811C408.863 339.033 351.879 329.711 324.743 308.404C303.034 291.359 226.934 274.669 177.351 281.771Z" stroke="black" stroke-width="4"/>
+<path id="s1" data-order="2" d="M67.5 314.5C92.5 265 106.5 247 126 232" stroke="#CF0000" stroke-width="3"/>
+<path id="s2" data-order="3" d="M125.5 232C171.5 197 196.5 165 245.5 170" stroke="#CF0000" stroke-width="3"/>
+<path id="s3" data-order="4" d="M245 169.5C305 182.5 323 204.5 337.5 224.5" stroke="#CF0000" stroke-width="3"/>
+<path id="s4" data-order="5" d="M337.5 224C353.1 250.4 359.667 277 361 287" stroke="#CF0000" stroke-width="3"/>
+<path id="s5" data-order="6" d="M316 201C322 229 325.5 263.5 310.5 263.5" stroke="#CF0000" stroke-width="3"/>
+<path id="s6" data-order="7" d="M310.5 263C294.5 261 262 263 252 263" stroke="#CF0000" stroke-width="3"/>
+<path id="s7" data-order="8" d="M254 263C237.2 263 209.833 269.167 199.5 273" stroke="#CF0000" stroke-width="3"/>
+<circle id="circ1" data-order="1" data-disappear="2" class="disappearing" cx="68.5" cy="312.5" r="40" fill="#FFCD1E" fill-opacity="0.57" stroke="black" stroke-width="3"/>
+<circle id="circ2" data-order="2" data-disappear="3" class="disappearing" cx="129.5" cy="225.5" r="70" fill="#FFCD1E" fill-opacity="0.57" stroke="black" stroke-width="3"/>
+<circle id="circ3" data-order="3" data-disappear="4" class="disappearing" cx="247" cy="169" r="64.5" fill="#FFCD1E" fill-opacity="0.57" stroke="black" stroke-width="3"/>
+<circle id="circ4" data-order="4" data-disappear="5" class="disappearing" cx="334.5" cy="224.5" r="60" fill="#FFCD1E" fill-opacity="0.57" stroke="black" stroke-width="3"/>
+<circle id="circ5" data-order="5" data-disappear="6" class="disappearing" cx="363" cy="282" r="40.5" fill="#FFCD1E" fill-opacity="0.57" stroke="black" stroke-width="3"/>
+<circle id="circ6" data-order="6" data-disappear="7" class="disappearing" cx="313" cy="255" r="40.5" fill="#FFCD1E" fill-opacity="0.57" stroke="black" stroke-width="3"/>
+<circle id="circ7" data-order="7" data-disappear="8" class="disappearing" cx="252" cy="260" r="24.5" fill="#FFCD1E" fill-opacity="0.57" stroke="black" stroke-width="3"/>
+</g>
+</svg>
           </div>
         </div>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Find salient junctions</h2>
-        <div class="row fill stretch">
+        <div class="row fill">
           <div class="column fill center">
             <ul>
               <li><em>SSI</em><sub><em>A</em></sub> := sum of the length <em>l</em><sub>k</sub> from <em>A</em> to an edge in direction <em>k</em> over a set of many <em>k</em></li>
-              <li><span style="color: #4171d7;"><em>d</em><sub><em>k,A,B</em></span> := <span class="frac">
+              <li data-order="9"><span style="color: #65cc64;"><em>d</em><sub><em>k,A,B</em></span> := <span class="frac">
                   <span>|<em>l</em><sub>k</sub><sup><em>A</em></sup> - <em>l</em><sub>k</sub><sup><em>B</em></sup>|</span>
                   <span>||<em>B</em> - <em>A</em>||</span>
                 </span>
               </li>
-              <li><span style="color: #d74141;"><em>w</em><sub><em>k,A,B</em></span> := Gaussian of <span style="color: #4171d7;"><em>d</em><sub><em>k,A,B</em></span></span> - &mu;</li>
-              <li>&Delta;(<em>SSI</em>)<sub><em>A</em>,<em>B</em></sub>
+              <li data-order="10"><span style="color: #f434f7;"><em>w</em><sub><em>k,A,B</em></span> := Gaussian of <span style="color: #65cc64;"><em>d</em><sub><em>k,A,B</em></span></span> - &mu;</li>
+              <li data-order="11">&Delta;(<em>SSI</em>)<sub><em>A</em>,<em>B</em></sub>
                 <div>
+                  <span class="space"></span>
                   :=
                   <span class="frac">
                     <span>1</span>
-                  <span>&sum;<sub><em>k</em></sub> <span style="color: #d74141;"><em>w</em><sub><em>k,A,B</em></sub></span></span>
+                  <span>&sum;<sub><em>k</em></sub> <span style="color: #f434f7;"><em>w</em><sub><em>k,A,B</em></sub></span></span>
                   </span>
                   <span class="sum">
                     <span><em>m</em></span>
                     <span class="sigma">&sum;</span>
                     <span><em>k</em> = 1</span>
                   </span>
-                  <span style="color: #d74141;"><em>w</em><sub><em>k,A,B</em></sub></span>
-                  <span style="color: #4171d7;"><em>d</em><sub><em>k,A,B</em></sub></span>
+                  <span style="color: #f434f7;"><em>w</em><sub><em>k,A,B</em></sub></span>
+                  <span style="color: #65cc64;"><em>d</em><sub><em>k,A,B</em></sub></span>
                 </div>
                 <div>
-                  &equiv; scale-invariant change in distance to edges
+                  (scale-invariant change in distance to edges)
                 </div>
               </li>
             </ul>
           </div>
           <div class="column fill center">
-            TODO illustration
+<svg width="505" height="300" viewBox="0 0 705 378" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="SSI">
+<rect width="705" height="378" fill="white"/>
+<path id="Vector 17" d="M103.5 208C94 142 100.056 101.445 152.584 79.5257C205.113 57.6064 274.98 61.1746 293.849 85.6427C312.719 110.111 319.23 161.103 307.5 208" stroke="black" stroke-width="3"/>
+<path id="Vector 18" d="M102.056 146C42.3683 161.253 -17.3198 220.23 13.2895 262.43C43.8987 304.629 124.503 327 220.412 327C316.321 327 361.725 316.323 392.335 281.242C422.944 246.16 419.373 165.32 312.75 155.66" stroke="black" stroke-width="3"/>
+<line data-order="2" id="Line 11" x1="122.061" y1="98.9393" x2="338.061" y2="314.939" stroke="#FF0000" stroke-width="3"/>
+<line data-order="3" id="Line 12" x1="303.061" y1="104.061" x2="94.0607" y2="313.061" stroke="#FF0000" stroke-width="3"/>
+<line data-order="4" id="Line 13" x1="101" y1="189.5" x2="312" y2="189.5" stroke="#FF0000" stroke-width="3"/>
+<circle data-order="1" id="Ellipse 14" cx="214" cy="191" r="8" fill="white" stroke="#FF0000" stroke-width="5"/>
+<line data-order="6" id="Line 17" x1="110.061" y1="116.939" x2="311.061" y2="317.939" stroke="#2F80ED" stroke-width="3"/>
+<line data-order="7" id="Line 18" x1="311.061" y1="126.061" x2="117.061" y2="320.061" stroke="#2F80ED" stroke-width="3"/>
+<line data-order="8" id="Line 19" x1="5" y1="219.5" x2="409" y2="219.5" stroke="#2F80ED" stroke-width="3"/>
+<circle data-order="5" id="Ellipse 15" cx="214" cy="221" r="8" fill="white" stroke="#2F80ED" stroke-width="5"/>
+<line data-order="2" id="Line 14" x1="452" y1="149.5" x2="617" y2="149.5" stroke="#FF0000" stroke-width="3"/>
+<line data-order="3" id="Line 15" x1="452" y1="165.5" x2="598" y2="165.5" stroke="#FF0000" stroke-width="3"/>
+<line data-order="4" id="Line 16" x1="452" y1="181.5" x2="554" y2="181.5" stroke="#FF0000" stroke-width="3"/>
+<line data-order="6" id="Line 20" x1="452" y1="212.5" x2="580" y2="212.5" stroke="#2F80ED" stroke-width="3"/>
+<line data-order="7" id="Line 21" x1="452" y1="228.5" x2="565" y2="228.5" stroke="#2F80ED" stroke-width="3"/>
+<line data-order="8" id="Line 22" x1="452" y1="244.5" x2="693" y2="244.5" stroke="#2F80ED" stroke-width="3"/>
+</g>
+</svg>
           </div>
         </div>
       </section>
 
-      <section class="aligntop">
+      <section>
         <h2>Find salient junctions</h2>
-        <div class="row fill stretch">
+        <div class="row fill">
           <div class="column fill center">
             <ul>
               <li><em>d</em><sub><em>SSI</em></sub> := sum of &Delta;(<em>SSI</em>) along points of a polyline</li>
-              <li>Find the regions of the skeleton where <em>d</em><sub><em>SSI</em></sub> &gt; 0.45</li>
+              <li>Find the regions of the skeleton<br />where <em>d</em><sub><em>SSI</em></sub> &gt; 0.45</li>
               <li>Each region extends from the skeleton to the curve where the circles were tangent</li>
               <li>Each region is a <strong>salient junction</strong></li>
             </ul>
           </div>
           <div class="column fill center">
-            TODO
+<svg width="429" height="451" viewBox="0 0 429 451" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="salientjunction">
+<rect width="429" height="451" fill="white"/>
+<path id="outline" d="M274.542 233.831C239.944 233.831 215.098 249.986 177.351 281.771M177.351 281.771C139.603 313.556 111.531 349.809 73.06 353.681C20.1456 359.008 16.7536 296.419 31.6782 249.811C46.6028 203.202 125.975 98 212.808 98C299.642 98 400.723 160.589 404.793 249.811C408.863 339.033 351.879 329.711 324.743 308.404C303.034 291.359 226.934 274.669 177.351 281.771Z" stroke="black" stroke-width="4"/>
+<path id="s1" d="M67.5 314.5C92.5 265 106.5 247 126 232" stroke="#CF0000" stroke-width="3"/>
+<path id="s2" d="M125.5 232C171.5 197 196.5 165 245.5 170" stroke="#CF0000" stroke-width="3"/>
+<path id="s3" d="M245 169.5C305 182.5 323 204.5 337.5 224.5" stroke="#CF0000" stroke-width="3"/>
+<path id="s4" d="M337.5 224C353.1 250.4 359.667 277 361 287" stroke="#CF0000" stroke-width="3"/>
+<path id="s5" d="M316 201C322 229 325.5 263.5 310.5 263.5" stroke="#CF0000" stroke-width="3"/>
+<path id="s6" d="M310.5 263C294.5 261 262 263 252 263" stroke="#CF0000" stroke-width="3"/>
+<path id="s7" d="M254 263C237.2 263 209.833 269.167 199.5 273" stroke="#CF0000" stroke-width="3"/>
+<path id="Vector 19" d="M403 235L339.5 226L271.5 235H254.5L260 173L323.5 130L349.5 146.5L375 173L394 203L403 235Z" fill="#2F80ED" fill-opacity="0.51"/>
+<path id="Vector 20" d="M262.5 263L270 234H275L312 263L304.5 296L292 293L262.5 286V263Z" fill="#2F80ED" fill-opacity="0.51"/>
+</g>
+</svg>
           </div>
         </div>
       </section>
@@ -217,82 +390,121 @@
         <h1>3. Split on highest priority junction</h1>
       </section>
 
-      <section class="center">
-        <h1>Analysis</h1>
-      </section>
-      
       <section>
-        <h2>Alignment</h2>
-        <div class="fill center">
-          <img width="600" src="img/cost_function_diagram-large.jpg" />
+        <h2>Prioritize junctions</h2>
+        <div class="row fill">
+          <div class="column fill center">
+            <ul>
+              <li>Classify junctions:
+                <ul>
+                  <li>Suggestive contour to suggestive contour: either <strong style="color: #2F80ED">front to front</strong> or <strong style="color: #27DBF3">back to back</strong> depending on what side of the T junction the suggestive contours reside (<span style="color: #f682f2">front to back</span> is ignored)</li>
+                  <li><strong style="color: #4FC854">Contour to suggestive front</strong> (ignore <span style="color: #ae1cfd">contour to back</span>)</li>
+                  <li><strong style="color: #fda71c">Contour to contour</strong></li>
+                </ul>
+                <li data-order="1">Order based on depth cues: <span style="color: #2F80ED">front-front</span> &gt; <span style="color: #27DBF3">back-back</span> &gt; <span style="color: #4FC854">contour-front</span> &gt; <span style="color: #fda71c">contour-contour</span></li>
+            </ul>
+          </div>
+          <div class="column fill center">
+<svg width="474" height="476" viewBox="0 0 474 476" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="classification2">
+<rect width="474" height="476" fill="white"/>
+<path id="Vector 21" d="M212.5 115.5L147 167L170 187L220.5 192.5L279.5 167L286 142.5L212.5 115.5Z" fill="#27DBF3" fill-opacity="0.7"/>
+<path id="Vector 22" d="M190 283L278.5 169L256.836 253.209L190 283Z" fill="#2F80ED" fill-opacity="0.7"/>
+<path id="Vector 23" d="M242.5 297L261.5 342L259.5 347.5V364H199L153.5 317.5L191.5 285L242.5 297Z" fill="#4FC854" fill-opacity="0.7"/>
+<path id="Vector 24" d="M278.5 168.5L283.5 151.5L330.5 184L334 242.5L319 249.5L303.5 259.5L283.5 215.5L278.5 168.5Z" fill="#4FC854" fill-opacity="0.7"/>
+<path id="Vector 25" d="M282 302L303.5 272.5L313 276.5L331.5 278.5L328.5 318.5L297 351.5L277 336.5H268L282 302Z" fill="#fda71c" fill-opacity="0.7"/>
+<path id="Vector 26" d="M146.5 106L133.5 159L142.5 165.5L170.5 106L149.5 38.5L137.5 46L126.5 58.5L146.5 106Z" fill="#ae1cfd" fill-opacity="0.51"/>
+<path id="Vector 27" d="M154.5 173L171.5 189.5L163 246.5L188 285.5L154.5 315L122.5 254.5L144 167L154.5 173Z" fill="#f682f2" fill-opacity="0.51"/>
+<path id="Vector 1" d="M292.078 124.861C301.897 102.762 319.164 55.1809 382.84 79.9753C446.515 104.77 447.594 174.302 430.866 197.48C414.138 220.657 304.595 243.834 301.897 267.551C299.198 291.267 422.772 258.927 430.866 326.303C438.96 393.679 420.613 410.389 382.84 412.006C345.066 413.623 290.025 331.154 267.9 336.544C245.776 341.934 278.693 406.077 247.395 435.722C216.097 465.368 140.01 459.978 119.504 412.006C103.1 373.628 115.082 356.456 140.984 328.607" stroke="black" stroke-width="3"/>
+<path id="suggestive1" d="M141 329L192 282" stroke="#FF0000" stroke-width="3"/>
+<path id="Vector 2" d="M141 330C96.7145 320.844 -8.05854 319.767 28.666 207.74C58.0457 118.119 109.031 144.873 123.073 153.49" stroke="black" stroke-width="3"/>
+<path id="suggestive2" d="M122 153C142.01 163.151 170.133 183.986 175 192" stroke="#FF0000" stroke-width="3"/>
+<path id="Vector 3" d="M123.969 154C92.762 75.6465 133.116 33.4978 182.616 25.9326C232.117 18.3674 295.606 57.274 291.84 126.441" stroke="black" stroke-width="3"/>
+<path id="suggestive3" d="M292 126C284.948 141.024 279.728 161.593 278 170" stroke="#FF0000" stroke-width="3"/>
+</g>
+</svg>
+          </div>
         </div>
       </section>
 
       <section>
-        <h2>Distance</h2>
-        <div class="fill center">
-          <img width="600" src="img/vectorfield.png" />
+        <h2>Prioritize junctions</h2>
+        <div class="row fill">
+          <div class="column fill center">
+            <ul>
+              <li>Want to make sure that suggestive contours that embed others get split first</li>
+              <li>For contour to suggestive front junctions, <strong>higher depth in tree from the contour &rArr; higher priority</strong></li>
+              <li>Take highest priority junction to split on</li>
+            </ul>
+          </div>
+          <div class="column fill center">
+            <img src="img/subparts.png" width="50%" />
+          </div>
         </div>
       </section>
 
       <section>
-        <h2>What it's like to use</h2>
-        <div class="fill center">
-          <img width="500" src="img/curves.gif" />
-        </div>
-      </section>
-
-      <section>
-        <h2>Editing environment</h2>
-        <p>Split-screen with grammar and curves</p>
-        <div class="fill center">
-          <img width="700" src="img/editor.png" />
-        </div>
-      </section>
-
-      <section>
-        <h2>What can you make with it?</h2>
-        <div class="fill center">
-          <img width="800" src="img/tree-large.jpg" />
-        </div>
-      </section>
-
-      <section>
-        <h2>What can you make with it?</h2>
-        <div class="fill center">
-          <img width="800" src="img/cathedral-large.jpg" />
-        </div>
-      </section>
-
-      <section>
-        <h2>What's next for this project?</h2>
+        <h2>Contour completion on splits</h2>
         <ul>
-          <li>This is mostly proof-of-concept right now, could be added to a real modelling program</li>
-          <li data-order="1">Could add better support for volumes and areas
-            <ul>
-              <li>Give guides a thickness where growth is uniformly encouraged</li>
-              <li>Could also add target density within/around the guide</li>
-            </ul>
+          <li>Connect <em>A</em> to <em>B</em> uses a cubic B&eacute;zier curve <em>K</em> with points (<em>A</em>, <em>A</em>+<span data-highlight="1"><em>c</em><sub>1</sub></span><em>T</em><sub><em>A</em></sub>, <em>B</em>-<span data-highlight="1"<em>c</em><sub>2</sub></span><em>T</em><sub><em>B</em></sub>, <em>B</em>)</li>
+          <li data-order="2">Pick <em>c</em><sub>1</sub>, <em>c</em><sub>2</sub> to minimize: <br />
+            <span class="space"></span>E = 
+            <span class="frac">
+              <span>(&int; d<em>s</em>)<sup>5</sup></span>
+              <span>||B - A||<sup>2</sup></span>
+            </span>
+            &int; (<span>d<em>K</em>(<em>s</em>)</span>/<span>d<em>s</em></span>)<sup>2</sup>
           </li>
-          <li data-order="2">This still requires you to write a grammar, which is not easy
-            <ul>
-              <li>A GUI tool where grammar rules are components that can be combined would be useful</li>
-              <li>Would also be good to visualize the distribution of results every time any randomization/choice is added to a rule</li>
-            </ul>
-          </li>
+          <li data-order="3">For a salient junction region, connect the points giving the lowest <em>E</em></li>
         </ul>
       </section>
 
       <section class="center">
-        <h2>Questions?</h2>
-        <div class="row">
-          <div class="column">
-            <img src="img/cathedral1.png" width="400" />
+        <h1>Results</h1>
+      </section>
+
+      <section>
+        <h2>Examples</h2>
+        <div class="row fill">
+          <div class="column fill center">
+            <img src="img/fig20.png" width="70%" />
           </div>
-          <div class="column">
-            <img src="img/cathedral2.png" width="400" />
+          <div class="column fill center">
+            <img src="img/fig21.png" width="70%" />
           </div>
         </div>
+      </section>
+      
+      <section>
+        <h2>Comparison with SmoothSketch</h2>
+        <div class="fill center">
+          <img width="70%" src="img/smoothsketch.png" />
+        </div>
+        <div class="center">
+          <p>SmoothSketch failure cases in red</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ambiguity</h2>
+        <div class="fill center">
+          <img width="70%" src="img/ambiguous.png" />
+        </div>
+      </section>
+
+      <section>
+        <h2>Failure cases</h2>
+        <div class="fill center">
+          <img width="70%" src="img/limitation.png" />
+        </div>
+        <div class="center">
+          <p>(a) is a recursive division failure; the rest are segmentation failures</p>
+        </div>
+      </section>
+
+
+      <section class="center">
+        <h1>Discussion time</h1>
       </section>
     </div>
 

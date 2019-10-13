@@ -30,6 +30,9 @@ p, li {
 .hidden {
   opacity: 0;
 }
+svg circle, svg path {
+  transition: all linear 0.2s;
+}
 
 h1 {
   font-size: 3em;
@@ -111,7 +114,7 @@ p.center, h1.center, h2.center, h3.center, h4.center {
 }
 
 section svg {
-  border: 2px solid #000;
+  /*border: 2px solid #000;*/
   justify-self: stretch;
 }
 
@@ -220,6 +223,15 @@ th {
 }
 .highlighted td, td.highlighted {
   background-color: #fffce0;
+}
+path, line {
+  transition: stroke linear 0.2s;
+}
+path.highlighted, line.highlighted {
+  stroke: #f7c634 !important;
+}
+span.highlighted {
+  color: #f7c634;
 }
 table {
   border-spacing: 0;
